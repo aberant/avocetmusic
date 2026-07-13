@@ -1,6 +1,57 @@
 <!DOCTYPE html>
 <html>
+<head>
+	<style>
+		h1 {
+			transform-origin: left top;
+		}
+	</style>
+</head>
 <body>
-<h1>Avocet</h1>
+<h1 id="title">Avocet</h1>
+<script>
+	function moveDown(element) {
+		var elStyle = window.getComputedStyle(element);
+		var distance = Number(element.dataset.distance);
+		var angle = Number(element.dataset.angle);
+		element.style.transition = 'transform 2s ease';
+		element.style.transform = `rotate(${angle}deg) translateY(${distance}px)`;
+	}
+
+	function isElementAtBottom(element) {
+		var distance = Number(element.dataset.distance);
+		var answer = (distance + element.offsetHeight + 20 ) <= window.innerHeight;
+
+		return answer;
+	}
+
+	function getRndInteger(min, max) {
+		return Math.floor(Math.random() * (max - min + 1) ) + min;
+	}
+
+	var interval = window.setInterval(movementCallback, 50);
+
+	var element = document.getElementById("title");
+	element.style.position = 'relative';
+	element.dataset.distance = 0;
+	element.dataset.angle = 0;
+
+	function movementCallback() {
+		var element = document.getElementById("title");
+
+		if (isElementAtBottom(element)) {
+
+			var chance = getRndInteger(0,4);
+			if (chance == 4) {
+				element.dataset.angle = Number(element.dataset.angle) + getRndInteger(-1, 1);;
+			}
+
+			element.dataset.distance = Number(element.dataset.distance) + 1;
+			moveDown(element);
+		}
+	}
+
+
+</script>
 </body>
 </html>
