@@ -13,6 +13,7 @@
 </head>
 <body>
 <h1 id="title">avocet</h1>
+<img src="images/avocet_yellow.png" style="width: 50%; height: auto;">
 <script>
 	function moveDown(element) {
 		var elStyle = window.getComputedStyle(element);
@@ -24,7 +25,7 @@
 
 	function isElementAtBottom(element) {
 		var distance = Number(element.dataset.distance);
-		var answer = (distance + element.offsetHeight + 20 ) <= window.innerHeight;
+		var answer = (distance + element.offsetHeight + 30 ) <= window.innerHeight;
 
 		return answer;
 	}
